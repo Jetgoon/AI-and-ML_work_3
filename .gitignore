@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 虚拟环境与缓存
+.venv/
+.hf_cache/
+
+# 模型权重：单个 26~268MB，可用 train.py 重新生成
+*.pt
+
+# 数据集原始文件：可用 README 第 1.1 节的 curl 命令重新下载
+local/ag_news/
+local/*/tokenizer.json
+local/*/vocab.txt
+local/*/tokenizer_config.json
+
+# 早期中断的实验，数据不完整，不纳入版本管理
+outputs/
+
+# 训练中间产物：只保留 metrics.json 作为数据留痕
+outputs_*/**/*.png
+outputs_*/**/*.csv

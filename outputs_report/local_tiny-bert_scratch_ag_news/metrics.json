@@ -1,0 +1,170 @@
+{
+  "config": {
+    "model_name": "local/tiny-bert",
+    "use_pretrained_weights": false,
+    "dataset_name": "ag_news",
+    "text_column": "text",
+    "label_column": "label",
+    "num_labels": 4,
+    "max_length": 64,
+    "train_size": 12000,
+    "val_size": 2000,
+    "test_size": 4000,
+    "batch_size": 32,
+    "lr": 0.001,
+    "epochs": 3,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "out_dir": "outputs_report",
+    "log_every": 50,
+    "num_workers": 0,
+    "num_threads": 8,
+    "local_model_dir": "local/tiny-bert",
+    "local_data_dir": "local/ag_news"
+  },
+  "mode": "scratch",
+  "device": "cpu",
+  "torch_version": "2.15.0+cpu",
+  "arch": {
+    "arch": "BertForSequenceClassification",
+    "hidden_size": 256,
+    "num_layers": 3,
+    "num_heads": 4,
+    "ffn_dim": 1024,
+    "activation": "gelu",
+    "vocab_size": 30522,
+    "max_position": 512,
+    "dropout": 0.1,
+    "num_labels": 4
+  },
+  "params": {
+    "total": 10381828,
+    "trainable": 10381828,
+    "breakdown": {
+      "Classifier": {
+        "params": 1028,
+        "ratio": 0.01
+      },
+      "Embedding": {
+        "params": 7945728,
+        "ratio": 76.53
+      },
+      "Encoder": {
+        "params": 2369280,
+        "ratio": 22.82
+      },
+      "Pooler": {
+        "params": 65792,
+        "ratio": 0.63
+      }
+    }
+  },
+  "init_check": {
+    "embedding_row_index": 1,
+    "embedding_first_row_head": [
+      0.0054,
+      -0.0039,
+      -0.0051,
+      0.0153,
+      -0.0236
+    ],
+    "embedding_abs_mean": 0.01596,
+    "theoretical_init_loss": 1.3863
+  },
+  "data": {
+    "raw_size": {
+      "train": 12000,
+      "val": 2000,
+      "test": 4000
+    },
+    "token_len": {
+      "mean": 52.3,
+      "p50": 51,
+      "p95": 78,
+      "max": 187
+    },
+    "class_distribution": {
+      "0": 2968,
+      "1": 2982,
+      "2": 3046,
+      "3": 3004
+    }
+  },
+  "train": {
+    "total_steps": 1125,
+    "warmup_steps": 112,
+    "duration_sec": 322.5,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7614,
+        "val_loss": 0.5214,
+        "val_acc": 0.8285,
+        "val_macro_f1": 0.8275,
+        "lr": 0.0007403751233958539,
+        "epoch_sec": 105.3
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.3167,
+        "val_loss": 0.4491,
+        "val_acc": 0.864,
+        "val_macro_f1": 0.863,
+        "lr": 0.00037018756169792695,
+        "epoch_sec": 106.8
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.1509,
+        "val_loss": 0.4485,
+        "val_acc": 0.8725,
+        "val_macro_f1": 0.8728,
+        "lr": 0.0,
+        "epoch_sec": 110.2
+      }
+    ]
+  },
+  "test": {
+    "accuracy": 0.8818,
+    "macro_f1": 0.8813,
+    "loss": 0.4176,
+    "random_baseline": 0.25,
+    "confusion_matrix": [
+      [
+        877,
+        25,
+        47,
+        48
+      ],
+      [
+        21,
+        972,
+        13,
+        18
+      ],
+      [
+        46,
+        12,
+        829,
+        112
+      ],
+      [
+        38,
+        9,
+        84,
+        849
+      ]
+    ],
+    "label_names": [
+      "World",
+      "Sports",
+      "Business",
+      "Sci/Tech"
+    ],
+    "report": "              precision    recall  f1-score   support\n\n       World     0.8931    0.8796    0.8863       997\n      Sports     0.9548    0.9492    0.9520      1024\n    Business     0.8520    0.8298    0.8408       999\n    Sci/Tech     0.8267    0.8663    0.8460       980\n\n    accuracy                         0.8818      4000\n   macro avg     0.8816    0.8813    0.8813      4000\nweighted avg     0.8824    0.8818    0.8819      4000\n",
+    "num_errors_dumped": 300
+  },
+  "step_loss_count": 1125
+}
